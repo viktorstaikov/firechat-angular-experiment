@@ -1,15 +1,13 @@
 var app = angular.module("app", ["ui.router"]);
-
 var chatRef = null;
-var chat = null;
 var tokenGenerator = null;
 
 var host = {"Username":"viktor.st.staykov@Gmail.com","Email":"viktor.st.staykov@Gmail.com","DisplayName":"Viktor Staykov","IsVerified":false,"VerificationCode":"vZbRPGWb7SJ8GfGJgt3MXWw4DNgsBUaR","IdentityProvider":"Everlive","Role":"02ec5fb0-3e87-11e4-82ae-49129d3ae089","CreatedAt":"2015-09-16T07:09:49.454Z","ModifiedAt":"2015-10-01T19:39:35.151Z","CreatedBy":"00000000-0000-0000-0000-000000000000","ModifiedBy":"00000000-0000-0000-0000-000000000000","Owner":"eb4622e0-5c41-11e5-8f89-7bb00374429c","MaxLicensePlates":0,"Id":"eb4622e0-5c41-11e5-8f89-7bb00374429c"};
 var guest = {"CreatedAt":"2015-02-03T22:15:07.670Z","CreatedBy":"00000000-0000-0000-0000-000000000000","DisplayName":"Христо Борисов","Email":"raxevsky@gmail.com","IdentityProvider":"Facebook","IsVerified":true,"ModifiedAt":"2015-10-05T20:41:10.146Z","ModifiedBy":"00000000-0000-0000-0000-000000000000","Owner":"1c826360-abf2-11e4-89a7-6dc231169f0f","Role":"02ec5fb0-3e87-11e4-82ae-49129d3ae089","Username":"raxevsky","MaxLicensePlates":null,"Id":"1c826360-abf2-11e4-89a7-6dc231169f0f"};
+var user = null;
 
 app.run(function(){
     chatRef = new Firebase('https://popping-heat-5403.firebaseio.com/chat');
-    chat = new Firechat(chatRef);
     tokenGenerator = new FirebaseTokenGenerator("Kh19OHrj49Fk8hkvMNpva6SlFuFSIgqHZyr4YH8j");
 });
 
@@ -21,9 +19,19 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             controller: 'HomeController'
         })
         .state('rooms', {
-            url: "/rooms",
+            url: "/rooms/:user",
             templateUrl: 'views/rooms.html',
-            controller: 'HomeController'
+            controller: 'ChatController'
+        })
+        .state('messages', {
+            url: "/messages/:roomId",
+            templateUrl: 'views/messages.html',
+            controller: 'ChatController'
+        })
+        .state('start-conversation', {
+            url: "/start-conversation",
+            templateUrl: 'views/startConversation.html',
+            controller: 'ChatController'
         });
     
     $urlRouterProvider.otherwise("/home");

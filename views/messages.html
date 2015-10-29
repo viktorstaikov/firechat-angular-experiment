@@ -1,0 +1,10 @@
+<h1>Hello</h1>
+<ul>
+    <li ng-repeat="message in messages">
+        {{message}}
+    </li>
+</ul>
+
+<label>Message:</label>
+<input type="text" ng-model="message" />
+<button ng-click="sendMessage()">Send</button>

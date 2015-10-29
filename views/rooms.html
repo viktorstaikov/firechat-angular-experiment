@@ -1,5 +1,8 @@
-<ul>
-    <li ng-repeat="room in rooms">
-        {{room}}
+<h1>Rooms</h1>
+<ul ng-show="rooms.length">
+    <li ng-repeat="room in rooms" ng-click="openRoom(room.id);">
+        {{room.name}}
     </li>
 </ul>
+
+<button ui-sref="start-conversation" >Start new conversation</button>
