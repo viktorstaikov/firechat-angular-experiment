@@ -17,12 +17,12 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('home', {
             url: "/home",
-            templateUrl: 'home/home.html',
+            templateUrl: 'views/home.html',
             controller: 'HomeController'
         })
         .state('rooms', {
             url: "/rooms",
-            templateUrl: 'home/rooms.html',
+            templateUrl: 'views/rooms.html',
             controller: 'HomeController'
         });
     
