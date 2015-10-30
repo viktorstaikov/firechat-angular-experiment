@@ -5,6 +5,8 @@ var tokenGenerator = null;
 
 var host = {"Username":"viktor.st.staykov@Gmail.com","Email":"viktor.st.staykov@Gmail.com","DisplayName":"Viktor Staykov","IsVerified":false,"VerificationCode":"vZbRPGWb7SJ8GfGJgt3MXWw4DNgsBUaR","IdentityProvider":"Everlive","Role":"02ec5fb0-3e87-11e4-82ae-49129d3ae089","CreatedAt":"2015-09-16T07:09:49.454Z","ModifiedAt":"2015-10-01T19:39:35.151Z","CreatedBy":"00000000-0000-0000-0000-000000000000","ModifiedBy":"00000000-0000-0000-0000-000000000000","Owner":"eb4622e0-5c41-11e5-8f89-7bb00374429c","MaxLicensePlates":0,"Id":"eb4622e0-5c41-11e5-8f89-7bb00374429c"};
 var guest = {"CreatedAt":"2015-02-03T22:15:07.670Z","CreatedBy":"00000000-0000-0000-0000-000000000000","DisplayName":"Христо Борисов","Email":"raxevsky@gmail.com","IdentityProvider":"Facebook","IsVerified":true,"ModifiedAt":"2015-10-05T20:41:10.146Z","ModifiedBy":"00000000-0000-0000-0000-000000000000","Owner":"1c826360-abf2-11e4-89a7-6dc231169f0f","Role":"02ec5fb0-3e87-11e4-82ae-49129d3ae089","Username":"raxevsky","MaxLicensePlates":null,"Id":"1c826360-abf2-11e4-89a7-6dc231169f0f"};
+var guest2 = {"Username":"stoyanmitov@gmail.com","Email":"stoyanmitov@gmail.com","DisplayName":"Stoyan Mitov","IsVerified":false,"VerificationCode":"5hpYtEIlmDHF4lndDOg8o52cdkycyiMz","IdentityProvider":"Everlive","Role":"02ec5fb0-3e87-11e4-82ae-49129d3ae089","CreatedAt":"2015-01-31T19:44:01.587Z","ModifiedAt":"2015-01-31T19:44:01.587Z","CreatedBy":"00000000-0000-0000-0000-000000000000","ModifiedBy":"00000000-0000-0000-0000-000000000000","Owner":"8176a830-a981-11e4-b3f0-cd44488bde0b","Id":"8176a830-a981-11e4-b3f0-cd44488bde0b"};
+
 var user = null;
 
 app.run(function(){

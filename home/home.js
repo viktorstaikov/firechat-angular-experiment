@@ -12,6 +12,11 @@ app.controller("HomeController", ["$scope", "$state", function($scope, $state){
         login(token);
     };
     
+    $scope.loginGuest2 = function() {
+        var token = tokenGenerator.createToken({ uid: guest2.Id, data: guest2 });
+        login(token);
+    }
+    
     function login(token){
         chatRef.authWithCustomToken(token, function (error, authData) {
             if (error) {
