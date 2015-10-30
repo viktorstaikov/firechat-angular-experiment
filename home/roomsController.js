@@ -39,7 +39,9 @@ app.controller("RoomsController", ["$scope", "$state", "$stateParams", function 
 
     $scope.openRoom = function (roomId) {
         $scope.currentRoom = roomId;
-
+        
+        chat.enterRoom(roomId);
+        
         $state.go("messages", {
             roomId: roomId
         });

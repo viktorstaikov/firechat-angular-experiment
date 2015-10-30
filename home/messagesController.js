@@ -22,8 +22,9 @@ app.controller("MessagesConroller", ["$scope", "$state", "$stateParams", functio
         
         $scope.messages = [];
         
-        console.log("   binding events...")
+        console.log("   binding events...");
         bindEvents();
+        console.log("   should be binded...");
     }
 
     function bindEvents() {
