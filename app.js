@@ -1,5 +1,6 @@
 var app = angular.module("app", ["ui.router"]);
 var chatRef = null;
+var chat = null;
 var tokenGenerator = null;
 
 var host = {"Username":"viktor.st.staykov@Gmail.com","Email":"viktor.st.staykov@Gmail.com","DisplayName":"Viktor Staykov","IsVerified":false,"VerificationCode":"vZbRPGWb7SJ8GfGJgt3MXWw4DNgsBUaR","IdentityProvider":"Everlive","Role":"02ec5fb0-3e87-11e4-82ae-49129d3ae089","CreatedAt":"2015-09-16T07:09:49.454Z","ModifiedAt":"2015-10-01T19:39:35.151Z","CreatedBy":"00000000-0000-0000-0000-000000000000","ModifiedBy":"00000000-0000-0000-0000-000000000000","Owner":"eb4622e0-5c41-11e5-8f89-7bb00374429c","MaxLicensePlates":0,"Id":"eb4622e0-5c41-11e5-8f89-7bb00374429c"};
@@ -8,6 +9,7 @@ var user = null;
 
 app.run(function(){
     chatRef = new Firebase('https://popping-heat-5403.firebaseio.com/chat');
+    
     tokenGenerator = new FirebaseTokenGenerator("Kh19OHrj49Fk8hkvMNpva6SlFuFSIgqHZyr4YH8j");
 });
 
@@ -21,12 +23,12 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state('rooms', {
             url: "/rooms/:user",
             templateUrl: 'views/rooms.html',
-            controller: 'ChatController'
+            controller: 'RoomsController'
         })
         .state('messages', {
             url: "/messages/:roomId",
             templateUrl: 'views/messages.html',
-            controller: 'ChatController'
+            controller: 'MessagesConroller'
         })
         .state('start-conversation', {
             url: "/start-conversation",
