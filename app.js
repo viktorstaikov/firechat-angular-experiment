@@ -11,7 +11,7 @@ var user = null;
 
 app.run(function(){
     chatRef = new Firebase('https://popping-heat-5403.firebaseio.com/chat');
-    
+    chat = new Firechat(chatRef);
     tokenGenerator = new FirebaseTokenGenerator("Kh19OHrj49Fk8hkvMNpva6SlFuFSIgqHZyr4YH8j");
 });
 

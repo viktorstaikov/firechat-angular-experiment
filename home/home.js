@@ -29,7 +29,6 @@ app.controller("HomeController", ["$scope", "$state", function($scope, $state){
     }
     
     function initChat(authData){
-        chat = new Firechat(chatRef);
         chat.setUser(authData.auth.data.Id, authData.auth.data.DisplayName, function (user) {
             console.log("   user set...")
             console.log(user);

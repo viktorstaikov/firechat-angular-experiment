@@ -1,8 +1,13 @@
 var app = angular.module("app");
-app.controller("RoomsController", ["$scope", "$state", "$stateParams", function ($scope, $state, $stateParams) {
+app.controller("RoomsController", ["$scope", "$state", "$stateParams", "ChatFactory", function ($scope, $state, $stateParams, ChatFactory) {
 
     if (!user) {
         console.log("no user")
+        $state.go("home");
+        return;
+    }
+    if (!chat) {
+        console.log("no chat");
         $state.go("home");
         return;
     }
@@ -17,13 +22,11 @@ app.controller("RoomsController", ["$scope", "$state", "$stateParams", function 
 
         console.log("bootstrapping...")
 
-        chat.getRoomList(function (roomsObj) {
-            $scope.rooms = objToArray(roomsObj).filter(function(el){
-                return el.name.indexOf(user.Id) > -1;
-            });
+        ChatFactory.getMyChats(user).then(function (rooms) {
+            $scope.rooms = rooms;
             console.log("   rooms...")
             console.log($scope.rooms);
-            $scope.$apply();
+//            $scope.$apply();
         });
     }
 
@@ -42,7 +45,7 @@ app.controller("RoomsController", ["$scope", "$state", "$stateParams", function 
     $scope.openRoom = function (roomId) {
         $scope.currentRoom = roomId;
         
-        chat.enterRoom(roomId);
+        ChatFactory.enterChat(roomId);
         
         $state.go("messages", {
             roomId: roomId

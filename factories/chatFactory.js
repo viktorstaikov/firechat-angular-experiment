@@ -4,6 +4,7 @@ app.factory("ChatFactory", ["$q", function($q){
     var subscribers = {};
     
     chat.on("message-add", function(roomId, message){
+//        debugger;
         if(!messageStore[roomId]) {
             messageStore[roomId] = [];
         }

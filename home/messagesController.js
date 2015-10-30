@@ -1,5 +1,5 @@
 var app = angular.module("app");
-app.controller("MessagesConroller", ["$scope", "$state", "$stateParams", function ($scope, $state, $stateParams) {
+app.controller("MessagesConroller", ["$scope", "$state", "$stateParams", "ChatFactory", function ($scope, $state, $stateParams, ChatFactory) {
 
     if (!user) {
         console.log("no user");
@@ -29,7 +29,7 @@ app.controller("MessagesConroller", ["$scope", "$state", "$stateParams", functio
     }
 
     function bindEvents() {
-        chat.on("message-add", function (roomId, message) {
+        ChatFactory.onNewMessages(function (message) {
             if(roomId != $scope.currentRoom) return;
             console.log("message came");
             if (!$scope.messages) $scope.messages = [];
@@ -41,7 +41,7 @@ app.controller("MessagesConroller", ["$scope", "$state", "$stateParams", functio
     $scope.sendMessage = function (callback) {
         if(!$scope.newMessage || $scope.newMessage.length < 1) return;
         console.log('sending message: ' + $scope.newMessage);
-        chat.sendMessage($scope.currentRoom, $scope.newMessage, 'default', function () {
+        ChatFactory.sendMessage($scope.currentRoom, $scope.newMessage, 'default', function () {
             console.log("message sent");
         });
         $scope.newMessage = '';
