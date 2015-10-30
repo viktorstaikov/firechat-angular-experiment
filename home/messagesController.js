@@ -44,7 +44,6 @@ app.controller("MessagesConroller", ["$scope", "$state", "$stateParams", functio
         chat.sendMessage($scope.currentRoom, $scope.newMessage, 'default', function () {
             console.log("message sent");
         });
-//        $scope.messages.push($scope.newMessage);
         $scope.newMessage = '';
     }
 
