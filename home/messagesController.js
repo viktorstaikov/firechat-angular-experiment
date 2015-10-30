@@ -13,6 +13,7 @@ app.controller("MessagesConroller", ["$scope", "$state", "$stateParams", functio
         return;
     }
     
+    $scope.user = user;
     $scope.currentRoom = $stateParams.roomId;
     $scope.newMessage = "";
     $scope.messages = [];
@@ -29,6 +30,7 @@ app.controller("MessagesConroller", ["$scope", "$state", "$stateParams", functio
 
     function bindEvents() {
         chat.on("message-add", function (roomId, message) {
+            if(roomId != $scope.currentRoom) return;
             console.log("message came");
             if (!$scope.messages) $scope.messages = [];
             $scope.messages.push(message);
@@ -37,11 +39,12 @@ app.controller("MessagesConroller", ["$scope", "$state", "$stateParams", functio
     }
 
     $scope.sendMessage = function (callback) {
+        if(!$scope.newMessage || $scope.newMessage.length < 1) return;
         console.log('sending message: ' + $scope.newMessage);
         chat.sendMessage($scope.currentRoom, $scope.newMessage, 'default', function () {
             console.log("message sent");
         });
-        $scope.messages.push($scope.newMessage);
+//        $scope.messages.push($scope.newMessage);
         $scope.newMessage = '';
     }
 

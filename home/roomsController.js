@@ -18,7 +18,9 @@ app.controller("RoomsController", ["$scope", "$state", "$stateParams", function 
         console.log("bootstrapping...")
 
         chat.getRoomList(function (roomsObj) {
-            $scope.rooms = objToArray(roomsObj);
+            $scope.rooms = objToArray(roomsObj).filter(function(el){
+                return el.name.indexOf(user.Id) > -1;
+            });
             console.log("   rooms...")
             console.log($scope.rooms);
             $scope.$apply();
