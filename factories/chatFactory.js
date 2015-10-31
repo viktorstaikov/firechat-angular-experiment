@@ -50,14 +50,14 @@ app.factory("ChatFactory", ["$q", function ($q) {
 
             return deferred.promise;
         },
-        startChat: function (host, guest) {
+        startChat: function (host, guestId) {
             var deferred = $q.defer();
 
-            var roomName = [host.Id, guest.Id].sort().toString();
+            var roomName = [host.Id, guestId].sort().toString();
 
             chat.createRoom(roomName, "public", function (roomId) {
-                chat.inviteUser(guest.Id, roomId);
-                deferred.resolve();
+                chat.inviteUser(guestId, roomId);
+                deferred.resolve(roomId);
             });
 
             return deferred.promise;

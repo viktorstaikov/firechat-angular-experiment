@@ -19,28 +19,26 @@ app.controller("MessagesConroller", ["$scope", "$state", "$stateParams", "ChatFa
     $scope.messages = [];
 
     function bootstrap() {
-        console.log("bootstrapping..." + $scope.currentRoom);
-
         $scope.messages = [];
 
-        console.log("   binding events...");
         bindEvents();
-        console.log("   should be binded...");
     }
 
     function bindEvents() {
         ChatFactory.onNewMessages($scope.currentRoom, function (message) {
-
-            console.log("message came");
-            if (!$scope.messages) $scope.messages = [];
+            if (!$scope.messages) {
+                $scope.messages = [];
+            }
             $scope.messages.push(message);
             $scope.$apply();
         });
     }
 
     $scope.sendMessage = function (callback) {
-        if (!$scope.newMessage || $scope.newMessage.length < 1) return;
-        console.log('sending message: ' + $scope.newMessage);
+        if (!$scope.newMessage || $scope.newMessage.length < 1) {
+            return;
+        }
+
         ChatFactory.sendMessage($scope.currentRoom, $scope.newMessage, 'default', function () {
             console.log("message sent");
         });
