@@ -7,12 +7,12 @@ app.controller("MessagesConroller", ["$scope", "$state", "$stateParams", "ChatFa
         return;
     }
 
-    if(!$stateParams.roomId){
+    if (!$stateParams.roomId) {
         console.log("no roomid");
         $state.go("rooms");
         return;
     }
-    
+
     $scope.user = user;
     $scope.currentRoom = $stateParams.roomId;
     $scope.newMessage = "";
@@ -20,17 +20,17 @@ app.controller("MessagesConroller", ["$scope", "$state", "$stateParams", "ChatFa
 
     function bootstrap() {
         console.log("bootstrapping..." + $scope.currentRoom);
-        
+
         $scope.messages = [];
-        
+
         console.log("   binding events...");
         bindEvents();
         console.log("   should be binded...");
     }
 
     function bindEvents() {
-        ChatFactory.onNewMessages(function (message) {
-            if(roomId != $scope.currentRoom) return;
+        ChatFactory.onNewMessages($scope.currentRoom, function (message) {
+
             console.log("message came");
             if (!$scope.messages) $scope.messages = [];
             $scope.messages.push(message);
@@ -39,7 +39,7 @@ app.controller("MessagesConroller", ["$scope", "$state", "$stateParams", "ChatFa
     }
 
     $scope.sendMessage = function (callback) {
-        if(!$scope.newMessage || $scope.newMessage.length < 1) return;
+        if (!$scope.newMessage || $scope.newMessage.length < 1) return;
         console.log('sending message: ' + $scope.newMessage);
         ChatFactory.sendMessage($scope.currentRoom, $scope.newMessage, 'default', function () {
             console.log("message sent");
